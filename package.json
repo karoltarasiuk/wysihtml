@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/Voog/wysihtml",
   "scripts": {
-    "build": "grunt"
+    "build": "grunt",
+    "test": "python -m SimpleHTTPServer 8000 & open http://localhost:8000/test/"
   }
 }
