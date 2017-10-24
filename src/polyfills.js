@@ -59,7 +59,13 @@ wysihtml.polyfills = function(win, doc) {
         if (originalTarget) {
           if (originalTarget.type === 'form') {
             // The selection parameters are not present for all form elements
-            if (typeof originalTarget.start !== 'undefined' && typeof originalTarget.end !== 'undefined') {
+            // https://developer.mozilla.org/en-US/docs/Web/API/Document/activeElement
+            // > Note: On Mac, elements that aren’t text input elements tend not to get focus assigned to them.
+            // Spec doesn't specify whether it should be undefined or null though, so need to check for both
+            if (
+                typeof originalTarget.start !== 'undefined' && typeof originalTarget.end !== 'undefined' &&
+                originalTarget.start !== null && originalTarget.end !== null
+            ) {
               originalTarget.node.setSelectionRange(originalTarget.start, originalTarget.end);
             }
             originalTarget.node.focus();
