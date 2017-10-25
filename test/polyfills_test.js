@@ -103,12 +103,11 @@ test('Check if normalization bug checking restores original caret/selection posi
   input.focus();
   input.setSelectionRange(1, 3);
 
-  scrollOriginalPos = window.pageYOffset;
-
   ok(document.activeElement === input && input.selectionStart === 1 && input.selectionEnd === 3 ,'input correctly selected');
+  scrollOriginalPos = window.pageYOffset;
   wysihtml.polyfills(window, document).normalizeHasCaretError();
-  ok(document.activeElement === input && input.selectionStart === 1 && input.selectionEnd === 3 ,'input correctly selected after caret error testing');
   ok(scrollOriginalPos === window.pageYOffset, 'scroll position kept after caret error testing');
+  ok(document.activeElement === input && input.selectionStart === 1 && input.selectionEnd === 3 ,'input correctly selected after caret error testing');
   document.body.removeChild(input);
 
   ceditable.setAttribute('contenteditable', true);
@@ -121,12 +120,11 @@ test('Check if normalization bug checking restores original caret/selection posi
   r.setEnd(ceditable.firstChild, 3);
   r.select();
 
-  scrollOriginalPos = window.pageYOffset;
-
   ok(document.activeElement === ceditable && rangy.getSelection().anchorOffset === 1 && rangy.getSelection().focusOffset === 3,'contenteditable correctly selected');
+  scrollOriginalPos = window.pageYOffset;
   wysihtml.polyfills(window, document).normalizeHasCaretError();
-  ok(document.activeElement === ceditable && rangy.getSelection().anchorOffset === 1 && rangy.getSelection().focusOffset === 3,'contenteditable correctly selected after caret error testing');
   ok(scrollOriginalPos === window.pageYOffset, 'scroll position kept after caret error testing');
+  ok(document.activeElement === ceditable && rangy.getSelection().anchorOffset === 1 && rangy.getSelection().focusOffset === 3,'contenteditable correctly selected after caret error testing');
   document.body.removeChild(ceditable);
 
 });
